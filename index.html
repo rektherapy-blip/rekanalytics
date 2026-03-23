@@ -279,19 +279,29 @@
 
   /* ── SERVICES ── */
   #services { background: var(--bg); }
-  .ptabs { display: flex; margin-top: 3.5rem; border-bottom: 1px solid var(--border); }
+  .ptabs { display: flex; margin-top: 3.5rem; border-bottom: 1px solid var(--border); align-items: flex-end; }
   .ptab {
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .95rem;
     letter-spacing: .06em; text-transform: uppercase; padding: .9rem 1.8rem;
     border: 1px solid transparent; border-bottom: none; background: transparent; color: var(--muted);
-    cursor: pointer; position: relative; bottom: -1px; transition: color .2s;
+    cursor: pointer; position: relative; bottom: -1px; transition: color .2s; user-select: none; display: block;
   }
   .ptab:hover { color: var(--text); }
-  .ptab.active { color: var(--accent); background: var(--bg2); border-color: var(--border); border-bottom-color: var(--bg2); }
   .ptab .tbar { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; transition: opacity .2s; }
-  .ptab.active .tbar { opacity: 1; }
   .ppanel { display: none; }
-  .ppanel.active { display: block; }
+  /* Pure CSS tab activation */
+  #t0:checked ~ .ptabs label[for="t0"],
+  #t1:checked ~ .ptabs label[for="t1"],
+  #t2:checked ~ .ptabs label[for="t2"] {
+    color: var(--accent); background: var(--bg2);
+    border-color: var(--border); border-bottom-color: var(--bg2);
+  }
+  #t0:checked ~ .ptabs label[for="t0"] .tbar,
+  #t1:checked ~ .ptabs label[for="t1"] .tbar,
+  #t2:checked ~ .ptabs label[for="t2"] .tbar { opacity: 1; }
+  #t0:checked ~ .ppanel.p1 { display: block; }
+  #t1:checked ~ .ppanel.p2 { display: block; }
+  #t2:checked ~ .ppanel.p3 { display: block; }
   .pdesc {
     background: var(--bg2); border: 1px solid var(--border); border-top: none;
     padding: 1.8rem 2.2rem; display: flex; gap: 2.5rem; align-items: flex-start;
@@ -544,14 +554,17 @@
     <h2>Everything <span class="blue">REK</span> Offers</h2>
     <p class="section-intro">The starter dashboard is just the beginning. As your needs grow, REK grows with you — across analytics, digital, and automation.</p>
 
+    <input type="radio" name="svctab" id="t0" checked hidden>
+    <input type="radio" name="svctab" id="t1" hidden>
+    <input type="radio" name="svctab" id="t2" hidden>
     <div class="ptabs">
-      <button class="ptab active" data-tab="0"><span class="tbar"></span>📊 Analytics &amp; BI</button>
-      <button class="ptab" data-tab="1"><span class="tbar"></span>💻 Digital &amp; Tech</button>
-      <button class="ptab" data-tab="2"><span class="tbar"></span>⚙️ Data &amp; Automation</button>
+      <label class="ptab" for="t0"><span class="tbar"></span>📊 Analytics &amp; BI</label>
+      <label class="ptab" for="t1"><span class="tbar"></span>💻 Digital &amp; Tech</label>
+      <label class="ptab" for="t2"><span class="tbar"></span>⚙️ Data &amp; Automation</label>
     </div>
 
     <!-- PANEL 1 -->
-    <div class="ppanel p1 active" id="p0">
+    <div class="ppanel p1" id="p0">
       <div class="pdesc">
         <p>Built on deep expertise in <strong style="color:var(--text);font-style:normal">healthcare and financial analytics</strong>. We understand your metrics, your compliance requirements, and the business questions that actually matter in your field.</p>
         <span class="pbadge bb">Core Expertise</span>
@@ -806,15 +819,6 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Tab switching
-  document.querySelectorAll('.ptab').forEach(tab => {
-    tab.addEventListener('click', function() {
-      const i = parseInt(this.getAttribute('data-tab'));
-      document.querySelectorAll('.ptab').forEach((t,j) => t.classList.toggle('active', i===j));
-      document.querySelectorAll('.ppanel').forEach((p,j) => p.classList.toggle('active', i===j));
-    });
-  });
-
   // Scroll reveal — visible by default, animates if JS runs
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
