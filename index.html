@@ -762,22 +762,22 @@
           No pitch. Just an honest conversation about what your data could be telling you.
         </p>
         <div class="cstack">
-          <div class="citem"><div class="cicon">@</div><div><div class="clbl">Email</div><div class="cval"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff979a939390bf8d9a949e919e93868b969c8cd19c9092">[email&#160;protected]</a></div></div></div>
+          <div class="citem"><div class="cicon">@</div><div><div class="clbl">Email</div><div class="cval">hello&#64;rekanalytics.com</div></div></div>
           <div class="citem"><div class="cicon">☎</div><div><div class="clbl">Phone</div><div class="cval">(402) 819-9644</div></div></div>
           <div class="citem"><div class="cicon">⊙</div><div><div class="clbl">Location</div><div class="cval">Remote-first · Available Nationwide</div></div></div>
         </div>
       </div>
 
-      <form class="form" onsubmit="handleSubmit(event)">
+      <form class="form" action="https://formspree.io/f/xreynqnb" method="POST">
         <div class="frow">
-          <div class="field"><label for="fn">First Name</label><input type="text" id="fn" placeholder="Jane" required></div>
-          <div class="field"><label for="ln">Last Name</label><input type="text" id="ln" placeholder="Smith" required></div>
+          <div class="field"><label for="fn">First Name</label><input type="text" id="fn" name="first_name" placeholder="Jane" required></div>
+          <div class="field"><label for="ln">Last Name</label><input type="text" id="ln" name="last_name" placeholder="Smith" required></div>
         </div>
-        <div class="field"><label for="em">Email</label><input type="email" id="em" placeholder="jane@mypractice.com" required></div>
-        <div class="field"><label for="co">Practice / Company</label><input type="text" id="co" placeholder="Smith Therapy Practice"></div>
+        <div class="field"><label for="em">Email</label><input type="email" id="em" name="email" placeholder="jane@mypractice.com" required></div>
+        <div class="field"><label for="co">Practice / Company</label><input type="text" id="co" name="company" placeholder="Smith Therapy Practice"></div>
         <div class="field">
           <label for="svc">I'm Interested In…</label>
-          <select id="svc">
+          <select id="svc" name="service">
             <option value="">Select an area…</option>
             <optgroup label="⭐ Founding Client Offer">
               <option>Starter Dashboard ($127) — SimplePractice / EHR CSV</option>
@@ -803,7 +803,7 @@
             </optgroup>
           </select>
         </div>
-        <div class="field"><label for="msg">Tell Me About Your Situation</label><textarea id="msg" placeholder="I'm a solo therapist using SimplePractice and I want to understand my revenue trends and no-show patterns better…"></textarea></div>
+        <div class="field"><label for="msg">Tell Me About Your Situation</label><textarea id="msg" name="message" placeholder="I'm a solo therapist using SimplePractice and I want to understand my revenue trends and no-show patterns better…"></textarea></div>
         <button type="submit" class="sbtn">Send Message →</button>
         <div id="fsuccess">✓ Message received — I'll be in touch within 1 business day.</div>
       </form>
@@ -818,8 +818,8 @@
   <div class="fcopy">Privacy · Terms</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal — visible by default, animates if JS runs
+<script>
+  // Scroll reveal
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
@@ -828,7 +828,31 @@
     obs.observe(el);
   });
 
-  // Form
-  function handleSubmit(e) {
+  // Form submit
+  document.querySelector('.form').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('
+    const btn = this.querySelector('.sbtn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    const data = new FormData(this);
+    try {
+      const res = await fetch('https://formspree.io/f/xreynqnb', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.style.display = 'none';
+        document.getElementById('fsuccess').style.display = 'block';
+      } else {
+        btn.textContent = 'Try Again →';
+        btn.disabled = false;
+        alert('Something went wrong. Please email hello@rekanalytics.com directly.');
+      }
+    } catch(err) {
+      btn.textContent = 'Try Again →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email hello@rekanalytics.com directly.');
+    }
+  });
+</script>
