@@ -545,9 +545,9 @@
     <p class="section-intro">The starter dashboard is just the beginning. As your needs grow, REK grows with you — across analytics, digital, and automation.</p>
 
     <div class="ptabs">
-      <button class="ptab active" onclick="sw(0)"><span class="tbar"></span>📊 Analytics &amp; BI</button>
-      <button class="ptab" onclick="sw(1)"><span class="tbar"></span>💻 Digital &amp; Tech</button>
-      <button class="ptab" onclick="sw(2)"><span class="tbar"></span>⚙️ Data &amp; Automation</button>
+      <button class="ptab active" data-tab="0"><span class="tbar"></span>📊 Analytics &amp; BI</button>
+      <button class="ptab" data-tab="1"><span class="tbar"></span>💻 Digital &amp; Tech</button>
+      <button class="ptab" data-tab="2"><span class="tbar"></span>⚙️ Data &amp; Automation</button>
     </div>
 
     <!-- PANEL 1 -->
@@ -807,10 +807,13 @@
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Tab switching
-  function sw(i) {
-    document.querySelectorAll('.ptab').forEach((t,j) => t.classList.toggle('active', i===j));
-    document.querySelectorAll('.ppanel').forEach((p,j) => p.classList.toggle('active', i===j));
-  }
+  document.querySelectorAll('.ptab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const i = parseInt(this.getAttribute('data-tab'));
+      document.querySelectorAll('.ptab').forEach((t,j) => t.classList.toggle('active', i===j));
+      document.querySelectorAll('.ppanel').forEach((p,j) => p.classList.toggle('active', i===j));
+    });
+  });
 
   // Scroll reveal — visible by default, animates if JS runs
   const obs = new IntersectionObserver(entries => {
