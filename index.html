@@ -3,248 +3,388 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>REK Analytics — Data. Technology. Growth.</title>
+<title>REK Analytics — Data Clarity for Independent Clinicians & Small Businesses</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:      #07090f;
-    --bg2:     #0d1119;
-    --bg3:     #121825;
-    --accent:  #00aaff;
-    --gold:    #f5a623;
-    --green:   #3ecf8e;
-    --red:     #f26d6d;
-    --text:    #e6ecf5;
-    --muted:   #6b7a96;
-    --border:  rgba(0,170,255,0.13);
-    --glow:    0 0 48px rgba(0,170,255,0.18);
+    --bg:       #07090f;
+    --bg2:      #0c1018;
+    --bg3:      #111620;
+    --accent:   #00aaff;
+    --gold:     #f0a500;
+    --green:    #2ecc8f;
+    --red:      #e05555;
+    --text:     #e4eaf5;
+    --muted:    #64748b;
+    --border:   rgba(0,170,255,0.12);
+    --glow:     0 0 50px rgba(0,170,255,0.15);
+    --gold-glow:0 0 50px rgba(240,165,0,0.2);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'Lora', Georgia, serif; font-weight: 400; overflow-x: hidden; }
 
+  /* subtle dot grid */
   body::before {
     content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,170,255,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,170,255,0.035) 1px, transparent 1px);
-    background-size: 64px 64px;
-    pointer-events: none;
-    z-index: 0;
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(0,170,255,0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    height: 70px;
-    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; display: flex; align-items: center; justify-content: space-between;
     padding: 0 5%;
-    background: rgba(7,9,15,0.88);
-    backdrop-filter: blur(14px);
+    background: rgba(7,9,15,0.9); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
   }
-  .logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.55rem; letter-spacing: 0.06em; }
+  .logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.5rem; letter-spacing: .08em; color: var(--text); }
   .logo .dot { color: var(--accent); }
-  nav ul { display: flex; gap: 2.2rem; list-style: none; }
-  nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color .2s; }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav a { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--muted); text-decoration: none; letter-spacing: .12em; text-transform: uppercase; transition: color .2s; }
   nav a:hover { color: var(--accent); }
-  .nav-cta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: .5rem 1.3rem; background: var(--accent); color: var(--bg) !important; text-decoration: none; clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); font-weight: 500; transition: background .2s; }
+  .nav-cta {
+    font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: .5rem 1.2rem; background: var(--accent); color: #000 !important; text-decoration: none; font-weight: 500;
+    clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); transition: background .2s;
+  }
   .nav-cta:hover { background: #33bbff; }
 
-  /* HERO */
-  #hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 5% 80px; overflow: hidden; }
-  .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--accent); letter-spacing: .2em; text-transform: uppercase; display: flex; align-items: center; gap: .8rem; margin-bottom: 1.4rem; }
-  .hero-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--accent); }
-  h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3.8rem, 9.5vw, 8.5rem); line-height: .92; letter-spacing: -.01em; text-transform: uppercase; max-width: 860px; }
-  h1 em { font-style: normal; color: var(--accent); }
-  h1 .ghost { -webkit-text-stroke: 2px rgba(0,170,255,.35); color: transparent; }
-  .hero-sub { margin-top: 1.8rem; font-size: 1.05rem; color: var(--muted); max-width: 540px; line-height: 1.75; }
-  .hero-pills { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.6rem; }
-  .pill { font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; padding: .35rem .85rem; border: 1px solid var(--border); color: var(--muted); }
-  .pill.active { border-color: var(--accent); color: var(--accent); background: rgba(0,170,255,.07); }
-  .hero-actions { display: flex; gap: 1rem; align-items: center; margin-top: 2.2rem; flex-wrap: wrap; }
-  .btn-primary { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .1em; text-transform: uppercase; padding: .9rem 2.2rem; background: var(--accent); color: var(--bg); text-decoration: none; clip-path: polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%); transition: background .2s, transform .15s; }
+  /* ── HERO ── */
+  #hero {
+    position: relative; z-index: 1;
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 110px 5% 80px;
+  }
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--accent);
+    letter-spacing: .2em; text-transform: uppercase;
+    display: flex; align-items: center; gap: .8rem; margin-bottom: 1.6rem;
+  }
+  .hero-tag::before { content:''; width: 28px; height: 1px; background: var(--accent); }
+
+  h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: clamp(3.6rem, 9vw, 8rem);
+    line-height: .92; letter-spacing: -.01em; text-transform: uppercase;
+    max-width: 820px;
+  }
+  h1 .blue { color: var(--accent); }
+  h1 .ghost { -webkit-text-stroke: 2px rgba(0,170,255,.3); color: transparent; }
+
+  .hero-body {
+    margin-top: 2rem; max-width: 560px;
+    font-size: 1.1rem; color: var(--muted); line-height: 1.8;
+    font-style: italic;
+  }
+  .hero-body strong { color: var(--text); font-style: normal; }
+
+  .hero-actions { display: flex; gap: 1rem; align-items: center; margin-top: 2.4rem; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem;
+    letter-spacing: .1em; text-transform: uppercase; padding: .9rem 2.2rem;
+    background: var(--accent); color: #000; text-decoration: none;
+    clip-path: polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);
+    transition: background .2s, transform .15s;
+  }
   .btn-primary:hover { background: #33bbff; transform: translateY(-2px); }
-  .btn-ghost { font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: .4rem; transition: color .2s; }
+  .btn-gold {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem;
+    letter-spacing: .1em; text-transform: uppercase; padding: .9rem 2.2rem;
+    background: var(--gold); color: #000; text-decoration: none;
+    clip-path: polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);
+    transition: background .2s, transform .15s;
+  }
+  .btn-gold:hover { background: #ffc233; transform: translateY(-2px); }
+  .btn-ghost {
+    font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    display: flex; align-items: center; gap: .4rem; transition: color .2s;
+  }
   .btn-ghost:hover { color: var(--text); }
 
-  .hero-ticker { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 272px; background: var(--bg2); border: 1px solid var(--border); padding: 1.4rem; box-shadow: var(--glow); }
-  .ticker-hd { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--accent); letter-spacing: .15em; text-transform: uppercase; display: flex; align-items: center; gap: .5rem; margin-bottom: .9rem; }
-  .live-dot { width:6px; height:6px; border-radius:50%; background:#3ecf8e; animation: blink 1.2s infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-  .ticker-row { display: flex; justify-content: space-between; align-items: baseline; padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.04); font-family: 'JetBrains Mono', monospace; font-size: .7rem; }
-  .ticker-row:last-child { border: none; }
-  .tl { color: var(--muted); } .tv { color: var(--text); }
-  .up { color: var(--green); font-size: .6rem; } .dn { color: var(--red); font-size: .6rem; }
+  /* hero floating card */
+  .hero-card {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: 290px; background: var(--bg2); border: 1px solid var(--border);
+    box-shadow: var(--glow); padding: 1.6rem;
+  }
+  .hc-head {
+    font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--accent);
+    letter-spacing: .15em; text-transform: uppercase; display: flex; align-items: center; gap: .5rem;
+    margin-bottom: 1.2rem; padding-bottom: .8rem; border-bottom: 1px solid var(--border);
+  }
+  .live { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 1.4s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+  .hc-metric { padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.04); display: flex; justify-content: space-between; align-items: baseline; }
+  .hc-metric:last-child { border: none; }
+  .hcl { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--muted); }
+  .hcv { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); }
+  .hcc { font-family: 'JetBrains Mono', monospace; font-size: .58rem; }
+  .pos { color: var(--green); } .neg { color: var(--red); }
+  .hc-note {
+    margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: .58rem;
+    color: var(--muted); line-height: 1.6; font-style: italic;
+    border-top: 1px solid var(--border); padding-top: .8rem;
+  }
 
-  /* STATS BAR */
-  .stats-bar { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4,1fr); background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .stat-item { padding: 2.4rem 2.8rem; border-right: 1px solid var(--border); }
-  .stat-item:last-child { border-right: none; }
-  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.8rem; line-height: 1; color: var(--accent); }
-  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-top: .35rem; }
+  /* ── FOUNDING OFFER ── */
+  #offer {
+    position: relative; z-index: 1;
+    background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--gold);
+  }
+  .offer-inner {
+    max-width: 1100px; margin: 0 auto; padding: 5rem 5%;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .offer-badge {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold); padding: .3rem .8rem;
+    background: rgba(240,165,0,.06); margin-bottom: 1.4rem;
+  }
+  .offer-badge::before { content: '★'; font-size: .55rem; }
+  h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.2rem,4.5vw,3.8rem); line-height: 1; text-transform: uppercase; }
+  h2 .blue { color: var(--accent); }
+  h2 .gold { color: var(--gold); }
+  .offer-body { margin-top: 1rem; font-size: 1rem; color: var(--muted); line-height: 1.8; }
+  .offer-includes { margin-top: 1.8rem; display: flex; flex-direction: column; gap: .7rem; }
+  .oi {
+    display: flex; align-items: flex-start; gap: .9rem;
+    font-size: .92rem; color: var(--text); line-height: 1.5;
+  }
+  .oi-check {
+    font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--green);
+    background: rgba(46,204,143,.08); border: 1px solid rgba(46,204,143,.2);
+    padding: .22rem .5rem; flex-shrink: 0; margin-top: .12rem;
+  }
 
-  /* SECTION BASICS */
+  .offer-price-box {
+    background: var(--bg); border: 1px solid var(--gold);
+    box-shadow: var(--gold-glow); padding: 2.5rem;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .offer-price-box::before {
+    content: 'FOUNDING RATE';
+    position: absolute; top: 1rem; right: -2rem;
+    font-family: 'JetBrains Mono', monospace; font-size: .55rem; letter-spacing: .15em;
+    background: var(--gold); color: #000; padding: .25rem 3rem;
+    transform: rotate(35deg);
+  }
+  .price-was {
+    font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: var(--muted);
+    letter-spacing: .08em; text-decoration: line-through; margin-bottom: .3rem;
+  }
+  .price-now {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 5rem; line-height: 1; color: var(--gold); letter-spacing: -.02em;
+  }
+  .price-desc {
+    font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--muted);
+    letter-spacing: .08em; text-transform: uppercase; margin-top: .4rem; margin-bottom: 2rem;
+  }
+  .price-steps { text-align: left; margin-bottom: 2rem; display: flex; flex-direction: column; gap: .6rem; }
+  .ps {
+    display: flex; align-items: center; gap: .8rem;
+    font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--muted);
+  }
+  .ps-num {
+    width: 20px; height: 20px; border: 1px solid var(--gold); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .6rem; font-weight: 700; flex-shrink: 0;
+  }
+  .price-fine {
+    font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--muted);
+    line-height: 1.7; border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem;
+    text-align: left;
+  }
+
+  /* ── SECTION BASICS ── */
   section { position: relative; z-index: 1; }
   .section-inner { max-width: 1200px; margin: 0 auto; padding: 7rem 5%; }
-  .section-label { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--accent); letter-spacing: .2em; text-transform: uppercase; margin-bottom: .9rem; display: flex; align-items: center; gap: .5rem; }
-  .section-label::before { content: '//'; opacity: .45; }
-  h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1; text-transform: uppercase; }
-  h2 span { color: var(--accent); }
-  .section-intro { margin-top: 1rem; font-size: 1rem; color: var(--muted); max-width: 600px; line-height: 1.75; }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--accent);
+    letter-spacing: .2em; text-transform: uppercase; margin-bottom: .8rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .section-tag::before { content: '//'; opacity: .4; }
+  .section-intro { margin-top: .8rem; font-size: 1rem; color: var(--muted); max-width: 580px; line-height: 1.8; font-style: italic; }
 
-  /* PILLAR TABS */
+  /* ── SERVICES ── */
   #services { background: var(--bg); }
-  .pillar-tabs { display: flex; margin-top: 3.5rem; border-bottom: 1px solid var(--border); }
-  .ptab { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .06em; text-transform: uppercase; padding: 1rem 2rem; border: 1px solid transparent; border-bottom: none; background: transparent; color: var(--muted); cursor: pointer; position: relative; bottom: -1px; transition: color .2s; }
+  .ptabs { display: flex; margin-top: 3.5rem; border-bottom: 1px solid var(--border); }
+  .ptab {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .95rem;
+    letter-spacing: .06em; text-transform: uppercase; padding: .9rem 1.8rem;
+    border: 1px solid transparent; border-bottom: none; background: transparent; color: var(--muted);
+    cursor: pointer; position: relative; bottom: -1px; transition: color .2s;
+  }
   .ptab:hover { color: var(--text); }
   .ptab.active { color: var(--accent); background: var(--bg2); border-color: var(--border); border-bottom-color: var(--bg2); }
-  .ptab-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; transition: opacity .2s; }
-  .ptab.active .ptab-bar { opacity: 1; }
-  .pillar-panel { display: none; }
-  .pillar-panel.active { display: block; }
+  .ptab .tbar { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; transition: opacity .2s; }
+  .ptab.active .tbar { opacity: 1; }
+  .ppanel { display: none; }
+  .ppanel.active { display: block; }
+  .pdesc {
+    background: var(--bg2); border: 1px solid var(--border); border-top: none;
+    padding: 1.8rem 2.2rem; display: flex; gap: 2.5rem; align-items: flex-start;
+  }
+  .pdesc p { font-size: .93rem; color: var(--muted); line-height: 1.8; flex: 1; font-style: italic; }
+  .pbadge {
+    font-family: 'JetBrains Mono', monospace; font-size: .58rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: .28rem .65rem; border: 1px solid; flex-shrink: 0; align-self: flex-start; white-space: nowrap;
+  }
+  .bb { border-color: var(--accent); color: var(--accent); background: rgba(0,170,255,.06); }
+  .bg { border-color: var(--gold); color: var(--gold); background: rgba(240,165,0,.06); }
+  .bgr { border-color: var(--green); color: var(--green); background: rgba(46,204,143,.06); }
 
-  .pillar-desc { background: var(--bg2); border: 1px solid var(--border); border-top: none; padding: 2rem 2.5rem; display: flex; gap: 3rem; align-items: flex-start; }
-  .pillar-desc p { font-size: .95rem; color: var(--muted); line-height: 1.75; flex: 1; }
-  .pillar-badge { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .7rem; border: 1px solid; flex-shrink: 0; align-self: flex-start; }
-  .badge-blue { border-color: var(--accent); color: var(--accent); background: rgba(0,170,255,.07); }
-  .badge-gold { border-color: var(--gold); color: var(--gold); background: rgba(245,166,35,.07); }
-  .badge-green { border-color: var(--green); color: var(--green); background: rgba(62,207,142,.07); }
+  .sgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-top: none; }
+  .scard { background: var(--bg); padding: 2.2rem; position: relative; overflow: hidden; transition: background .3s; }
+  .scard::after { content:''; position:absolute; top:0;left:0;width:3px;height:0;transition:height .4s; }
+  .scard:hover { background: var(--bg2); }
+  .scard:hover::after { height: 100%; }
+  .p1 .scard::after { background: var(--accent); }
+  .p2 .scard::after { background: var(--gold); }
+  .p3 .scard::after { background: var(--green); }
+  .snum { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.8rem; line-height:1; margin-bottom:1rem; }
+  .p1 .snum { color: rgba(0,170,255,.08); }
+  .p2 .snum { color: rgba(240,165,0,.08); }
+  .p3 .snum { color: rgba(46,204,143,.08); }
+  .stitle { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.2rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.6rem; }
+  .sdesc { font-size:.86rem; color:var(--muted); line-height:1.75; }
+  .stags { margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.3rem; }
+  .tag { font-family:'JetBrains Mono',monospace; font-size:.55rem; letter-spacing:.08em; text-transform:uppercase; padding:.2rem .5rem; border:1px solid var(--border); color:var(--muted); }
 
-  .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-top: none; }
-  .service-card { background: var(--bg); padding: 2.2rem; transition: background .3s; position: relative; overflow: hidden; }
-  .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--accent); transition: height .4s; }
-  .service-card:hover { background: var(--bg2); }
-  .service-card:hover::before { height: 100%; }
-  .p1-accent::before { background: var(--accent) !important; }
-  .p2-accent::before { background: var(--gold) !important; }
-  .p3-accent::before { background: var(--green) !important; }
-  .svc-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3rem; color: rgba(0,170,255,.09); line-height: 1; margin-bottom: 1.2rem; }
-  .svc-num-gold { color: rgba(245,166,35,.09); }
-  .svc-num-green { color: rgba(62,207,142,.09); }
-  .svc-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.25rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .7rem; }
-  .svc-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; }
-  .svc-tags { margin-top: 1.3rem; display: flex; flex-wrap: wrap; gap: .35rem; }
-  .tag { font-family: 'JetBrains Mono', monospace; font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; padding: .22rem .55rem; border: 1px solid var(--border); color: var(--muted); }
-
-  /* WHO WE SERVE */
+  /* ── WHO WE SERVE ── */
   #who { background: var(--bg2); }
   .who-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 3.5rem; }
-  .who-card { background: var(--bg2); padding: 2.5rem; transition: background .3s; }
+  .who-card { background: var(--bg2); padding: 2.4rem; transition: background .3s; }
   .who-card:hover { background: var(--bg3); }
-  .who-icon { font-size: 2rem; margin-bottom: 1.2rem; }
-  .who-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: .7rem; }
-  .who-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; }
-  .who-list { margin-top: 1rem; display: flex; flex-direction: column; gap: .4rem; }
-  .who-item { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--muted); display: flex; align-items: center; gap: .5rem; }
-  .who-item::before { content: '→'; color: var(--accent); }
+  .who-card.primary { border-top: 2px solid var(--accent); }
+  .who-flag {
+    font-family: 'JetBrains Mono', monospace; font-size: .55rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--border); padding: .2rem .5rem;
+    display: inline-block; margin-bottom: 1.2rem; background: rgba(0,170,255,.05);
+  }
+  .who-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .who-title { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.25rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.6rem; }
+  .who-desc { font-size:.87rem; color:var(--muted); line-height:1.75; font-style:italic; }
+  .who-list { margin-top:1rem; display:flex; flex-direction:column; gap:.35rem; }
+  .wli { font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--muted); display:flex; align-items:center; gap:.5rem; }
+  .wli::before { content:'→'; color:var(--accent); }
 
-  /* PROCESS */
+  /* ── PROCESS ── */
   #process { background: var(--bg); }
-  .process-steps { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 4rem; position: relative; }
-  .process-steps::before { content: ''; position: absolute; top: 27px; left: 8%; right: 8%; height: 1px; background: linear-gradient(90deg, var(--accent), rgba(0,170,255,.1)); opacity: .3; }
-  .step { padding: 0 1.3rem; text-align: center; }
-  .step-num { width: 54px; height: 54px; margin: 0 auto 1.4rem; background: var(--bg2); border: 2px solid var(--accent); clip-path: polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%); display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; color: var(--accent); }
-  .step-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .5rem; }
-  .step-desc { font-size: .84rem; color: var(--muted); line-height: 1.65; }
+  .psteps { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 4rem; position: relative; }
+  .psteps::before { content:''; position:absolute; top:26px; left:8%; right:8%; height:1px; background:linear-gradient(90deg,var(--accent),transparent); opacity:.25; }
+  .pstep { padding: 0 1.2rem; text-align: center; }
+  .pnum {
+    width: 52px; height: 52px; margin: 0 auto 1.3rem;
+    background: var(--bg2); border: 2px solid var(--accent);
+    clip-path: polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.2rem; color:var(--accent);
+  }
+  .ptitle { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.4rem; }
+  .pdescr { font-size:.83rem; color:var(--muted); line-height:1.7; font-style:italic; }
 
-  /* WHY REK */
+  /* ── WHY REK ── */
   #why { background: var(--bg2); }
-  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
-  .why-visual { background: var(--bg); border: 1px solid var(--border); padding: 2rem; box-shadow: var(--glow); }
-  .vc-label { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.4rem; }
-  .bar-chart { display: flex; flex-direction: column; gap: .75rem; }
-  .bar-row { display: flex; align-items: center; gap: 1rem; }
-  .bar-name { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--muted); width: 110px; flex-shrink: 0; text-align: right; }
-  .bar-track { flex: 1; height: 7px; background: rgba(255,255,255,.05); overflow: hidden; }
-  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #33ccff); transform: scaleX(0); transform-origin: left; animation: growBar 1.6s ease forwards; }
-  @keyframes growBar { to { transform: scaleX(1); } }
-  .bar-val { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--accent); width: 34px; }
-  .why-points { display: flex; flex-direction: column; gap: 1.8rem; }
-  .why-point { display: flex; gap: 1.1rem; }
-  .wpi { width: 38px; height: 38px; flex-shrink: 0; background: rgba(0,170,255,.08); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .95rem; clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
-  .wp-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: .25rem; }
-  .wp-desc { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+  .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-top:4rem; }
+  .why-panel { background:var(--bg); border:1px solid var(--border); padding:2rem; box-shadow:var(--glow); }
+  .wp-label { font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-bottom:1.4rem; }
+  .barchart { display:flex; flex-direction:column; gap:.7rem; }
+  .brow { display:flex; align-items:center; gap:.9rem; }
+  .bname { font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--muted); width:115px; flex-shrink:0; text-align:right; }
+  .btrack { flex:1; height:6px; background:rgba(255,255,255,.04); overflow:hidden; }
+  .bfill { height:100%; background:linear-gradient(90deg,var(--accent),#44ddff); transform:scaleX(0); transform-origin:left; animation:grow 1.7s ease forwards; }
+  @keyframes grow { to { transform: scaleX(1); } }
+  .bval { font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--accent); width:32px; }
+  .why-points { display:flex; flex-direction:column; gap:1.7rem; }
+  .wpoint { display:flex; gap:1rem; }
+  .wicon { width:36px; height:36px; flex-shrink:0; background:rgba(0,170,255,.07); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:.9rem; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
+  .wtitle { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.25rem; }
+  .wdesc { font-size:.84rem; color:var(--muted); line-height:1.7; font-style:italic; }
 
-  /* PORTAL */
-  #portal { background: var(--bg3); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .portal-inner { max-width: 1200px; margin: 0 auto; padding: 7rem 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .portal-features { margin-top: 2rem; display: flex; flex-direction: column; gap: .9rem; }
-  .pfeat { display: flex; align-items: center; gap: .9rem; font-size: .9rem; color: var(--muted); }
-  .pfeat::before { content: '→'; color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: .75rem; }
-  .portal-mockup { background: var(--bg); border: 1px solid var(--border); box-shadow: var(--glow), 0 40px 80px rgba(0,0,0,.5); overflow: hidden; }
-  .pm-bar { background: var(--bg2); padding: .7rem 1rem; display: flex; align-items: center; gap: .45rem; border-bottom: 1px solid var(--border); }
-  .pm-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .pm-url { font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--muted); margin-left:.4rem; }
-  .pm-body { padding: 1.4rem; }
-  .pm-row { display: flex; gap: .8rem; margin-bottom: .8rem; }
-  .pm-widget { flex: 1; background: var(--bg2); border: 1px solid var(--border); padding: .9rem; }
-  .pwl { font-family:'JetBrains Mono',monospace; font-size:.52rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
-  .pwv { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.5rem; color:var(--accent); }
-  .pwc { font-family:'JetBrains Mono',monospace; font-size:.52rem; color:var(--green); }
-  .pm-graph { background: var(--bg2); border: 1px solid var(--border); padding: .8rem; height: 70px; overflow: hidden; margin-bottom:.8rem; }
-  .pm-graph svg { width:100%; height:100%; }
-  .pm-list { display:flex; flex-direction:column; gap:.35rem; }
-  .pm-file { display:flex; justify-content:space-between; align-items:center; font-size:.72rem; padding:.35rem .6rem; background:var(--bg2); border-left:2px solid var(--border); }
-  .pm-file.hi { border-left-color:var(--accent); }
-  .pm-ft { font-family:'JetBrains Mono',monospace; font-size:.55rem; color:var(--muted); }
+  /* ── PORTAL ── */
+  #portal { background:var(--bg3); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .portal-inner { max-width:1200px; margin:0 auto; padding:7rem 5%; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+  .pfeats { margin-top:1.8rem; display:flex; flex-direction:column; gap:.8rem; }
+  .pfeat { display:flex; align-items:center; gap:.8rem; font-size:.88rem; color:var(--muted); font-style:italic; }
+  .pfeat::before { content:'→'; color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:.7rem; font-style:normal; }
+  .pmock { background:var(--bg); border:1px solid var(--border); box-shadow:var(--glow),0 40px 80px rgba(0,0,0,.5); overflow:hidden; }
+  .pmbar { background:var(--bg2); padding:.65rem 1rem; display:flex; align-items:center; gap:.4rem; border-bottom:1px solid var(--border); }
+  .pmdot { width:7px; height:7px; border-radius:50%; }
+  .pmurl { font-family:'JetBrains Mono',monospace; font-size:.55rem; color:var(--muted); margin-left:.4rem; }
+  .pmbody { padding:1.3rem; }
+  .pmrow { display:flex; gap:.7rem; margin-bottom:.7rem; }
+  .pmw { flex:1; background:var(--bg2); border:1px solid var(--border); padding:.8rem; }
+  .pwl { font-family:'JetBrains Mono',monospace; font-size:.5rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+  .pwv { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.4rem; color:var(--accent); }
+  .pwc { font-family:'JetBrains Mono',monospace; font-size:.5rem; color:var(--green); }
+  .pmgraph { background:var(--bg2); border:1px solid var(--border); padding:.7rem; height:65px; overflow:hidden; margin-bottom:.7rem; }
+  .pmgraph svg { width:100%; height:100%; }
+  .pmfiles { display:flex; flex-direction:column; gap:.3rem; }
+  .pmf { display:flex; justify-content:space-between; align-items:center; font-size:.7rem; padding:.3rem .55rem; background:var(--bg2); border-left:2px solid var(--border); }
+  .pmf.hi { border-left-color:var(--accent); }
+  .pmft { font-family:'JetBrains Mono',monospace; font-size:.52rem; color:var(--muted); }
+  .soon-badge {
+    display:inline-block; margin-top:2rem;
+    font-family:'JetBrains Mono',monospace; font-size:.65rem; letter-spacing:.15em; text-transform:uppercase;
+    padding:.5rem 1.2rem; border:1px solid var(--muted); color:var(--muted);
+    clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  }
 
-  /* CONTACT */
-  #contact { background: var(--bg); }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; margin-top: 4rem; align-items: start; }
-  .cinfo-stack { display:flex; flex-direction:column; gap:1.3rem; margin-top:2rem; }
-  .cinfo { display:flex; gap:.9rem; align-items:flex-start; }
-  .cinfo-icon { font-family:'JetBrains Mono',monospace; font-size:.65rem; color:var(--accent); background:rgba(0,170,255,.07); border:1px solid var(--border); padding:.45rem .6rem; flex-shrink:0; }
-  .cil { font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
-  .civ { font-size:.9rem; color:var(--text); margin-top:.2rem; }
-  .rek-form { display:flex; flex-direction:column; gap:.9rem; }
-  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
-  .field { display:flex; flex-direction:column; gap:.35rem; }
-  label { font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
-  input, select, textarea { background:var(--bg2); border:1px solid rgba(0,170,255,.2); color:var(--text); padding:.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:.9rem; outline:none; transition:border-color .2s; border-radius:0; appearance:none; -webkit-appearance:none; }
-  input:focus, select:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 0 2px rgba(0,170,255,.1); }
-  textarea { min-height:110px; resize:vertical; }
-  select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300aaff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; background-size:10px; padding-right:2rem; }
+  /* ── CONTACT ── */
+  #contact { background:var(--bg); }
+  .contact-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:5rem; margin-top:4rem; align-items:start; }
+  .cstack { display:flex; flex-direction:column; gap:1.2rem; margin-top:1.8rem; }
+  .citem { display:flex; gap:.8rem; align-items:flex-start; }
+  .cicon { font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--accent); background:rgba(0,170,255,.07); border:1px solid var(--border); padding:.4rem .55rem; flex-shrink:0; }
+  .clbl { font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
+  .cval { font-size:.88rem; color:var(--text); margin-top:.15rem; }
+
+  .form { display:flex; flex-direction:column; gap:.85rem; }
+  .frow { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; }
+  .field { display:flex; flex-direction:column; gap:.3rem; }
+  label { font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
+  input,select,textarea { background:var(--bg2); border:1px solid rgba(0,170,255,.18); color:var(--text); padding:.68rem .9rem; font-family:'Lora',serif; font-size:.88rem; outline:none; transition:border-color .2s; border-radius:0; appearance:none; -webkit-appearance:none; }
+  input:focus,select:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 2px rgba(0,170,255,.08); }
+  textarea { min-height:100px; resize:vertical; }
+  select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300aaff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; background-size:9px; padding-right:1.8rem; }
   option { background:var(--bg2); }
-  .submit-btn { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; letter-spacing:.1em; text-transform:uppercase; padding:1rem 2rem; background:var(--accent); color:var(--bg); border:none; cursor:pointer; width:100%; margin-top:.4rem; clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%); transition:background .2s, transform .15s; }
-  .submit-btn:hover { background:#33bbff; transform:translateY(-2px); }
-  #form-success { display:none; font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--green); text-align:center; padding:.75rem; border:1px solid rgba(62,207,142,.3); background:rgba(62,207,142,.05); }
+  .sbtn { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; letter-spacing:.1em; text-transform:uppercase; padding:.95rem 2rem; background:var(--accent); color:#000; border:none; cursor:pointer; width:100%; clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%); transition:background .2s,transform .15s; margin-top:.3rem; }
+  .sbtn:hover { background:#33bbff; transform:translateY(-2px); }
+  #fsuccess { display:none; font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--green); text-align:center; padding:.7rem; border:1px solid rgba(46,204,143,.25); background:rgba(46,204,143,.04); }
 
-  /* FOOTER */
-  footer { position:relative; z-index:1; background:var(--bg2); border-top:1px solid var(--border); padding:2.2rem 5%; display:flex; align-items:center; justify-content:space-between; }
-  .fl { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.2rem; letter-spacing:.06em; }
-  .fl span { color:var(--accent); }
-  .fc { font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--muted); letter-spacing:.08em; }
+  /* ── FOOTER ── */
+  footer { position:relative; z-index:1; background:var(--bg2); border-top:1px solid var(--border); padding:2rem 5%; display:flex; align-items:center; justify-content:space-between; }
+  .flogo { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.15rem; letter-spacing:.08em; }
+  .flogo .dot { color:var(--accent); }
+  .fcopy { font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--muted); letter-spacing:.08em; }
 
-  /* ANIMATIONS */
-  .fade-in { opacity:1; transform:none; transition:opacity .7s ease, transform .7s ease; }
-  .fade-in.animate { opacity:0; transform:translateY(22px); }
-  .fade-in.animate.visible { opacity:1; transform:none; }
+  /* ── VISIBLE BY DEFAULT, ANIMATE IF SUPPORTED ── */
+  .reveal { opacity:1; transform:none; transition:opacity .7s ease, transform .7s ease; }
+  .reveal.prep { opacity:0; transform:translateY(20px); }
+  .reveal.prep.visible { opacity:1; transform:none; }
 
-  /* RESPONSIVE */
+  /* ── RESPONSIVE ── */
   @media(max-width:960px){
     nav ul { display:none; }
-    .hero-ticker { display:none; }
-    .stats-bar { grid-template-columns:1fr 1fr; }
-    .stat-item { border-right:none; border-bottom:1px solid var(--border); }
-    .services-grid { grid-template-columns:1fr; }
+    .hero-card { display:none; }
+    .offer-inner { grid-template-columns:1fr; gap:3rem; }
+    .sgrid { grid-template-columns:1fr; }
     .who-grid { grid-template-columns:1fr; }
-    .process-steps { grid-template-columns:1fr 1fr; }
-    .why-grid, .portal-inner, .contact-grid { grid-template-columns:1fr; gap:3rem; }
-    .form-row { grid-template-columns:1fr; }
-    .pillar-tabs { flex-direction:column; border:1px solid var(--border); border-bottom:none; }
+    .psteps { grid-template-columns:1fr 1fr; }
+    .why-grid,.portal-inner,.contact-grid { grid-template-columns:1fr; gap:3rem; }
+    .frow { grid-template-columns:1fr; }
+    .ptabs { flex-direction:column; border:1px solid var(--border); border-bottom:none; }
     .ptab { border:none; border-bottom:1px solid var(--border); }
-    .ptab.active { border-bottom:1px solid var(--border); }
-    .pillar-desc { flex-direction:column; gap:1rem; }
+    .pdesc { flex-direction:column; gap:1rem; }
   }
 </style>
 </head>
@@ -254,153 +394,194 @@
 <nav>
   <div class="logo">REK<span class="dot">.</span>ANALYTICS</div>
   <ul>
+    <li><a href="#offer">Starter Offer</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#who">Who We Serve</a></li>
-    <li><a href="#process">Process</a></li>
     <li><a href="#why">Why REK</a></li>
-    <li><a href="#portal">Portal</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get Started →</a>
+  <a href="#contact" class="nav-cta">Book Free Call →</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-eyebrow">Data · Technology · Growth</div>
-  <h1>Clarity From<br><em>Your Data.</em><br><span class="ghost">Power From AI.</span></h1>
-  <p class="hero-sub">REK Analytics turns complex data into confident decisions, builds AI-powered digital experiences, and helps businesses run smarter — all under one roof.</p>
-  <div class="hero-pills">
-    <span class="pill active">Healthcare Analytics</span>
-    <span class="pill active">Financial BI</span>
-    <span class="pill active">Website & App Builds</span>
-    <span class="pill active">Business Automation</span>
-  </div>
+  <div class="hero-tag">Healthcare &amp; Business Intelligence</div>
+  <h1>
+    Your Practice<br>
+    Runs On <span class="blue">Data.</span><br>
+    <span class="ghost">Let's Read It.</span>
+  </h1>
+  <p class="hero-body">
+    You went into practice to <strong>help people</strong> — not to wrestle spreadsheets.
+    REK Analytics translates your clinical and financial data into plain-English insights,
+    so you can make <strong>confident decisions</strong> without a data team.
+  </p>
   <div class="hero-actions">
-    <a href="#contact" class="btn-primary">Book a Free Discovery Call</a>
-    <a href="#services" class="btn-ghost">See All Services →</a>
+    <a href="#offer" class="btn-gold">See Founding Offer →</a>
+    <a href="#services" class="btn-ghost">Explore All Services →</a>
   </div>
-  <div class="hero-ticker">
-    <div class="ticker-hd"><span class="live-dot"></span> Live Client Metrics</div>
-    <div class="ticker-row"><span class="tl">Revenue Ops</span><span class="tv">$2.4M</span><span class="up">↑ 18.2%</span></div>
-    <div class="ticker-row"><span class="tl">Churn Rate</span><span class="tv">2.1%</span><span class="up">↓ 0.8%</span></div>
-    <div class="ticker-row"><span class="tl">Claim Denials</span><span class="tv">4.3%</span><span class="up">↓ 2.1%</span></div>
-    <div class="ticker-row"><span class="tl">Hours Automated</span><span class="tv">340/mo</span><span class="up">↑ 12%</span></div>
-    <div class="ticker-row"><span class="tl">LTV Ratio</span><span class="tv">6.8x</span><span class="up">↑ 0.4x</span></div>
+
+  <div class="hero-card">
+    <div class="hc-head"><span class="live"></span> Sample Practice Dashboard</div>
+    <div class="hc-metric"><span class="hcl">Monthly Revenue</span><span class="hcv">$28,400</span><span class="hcc pos">↑ 12%</span></div>
+    <div class="hc-metric"><span class="hcl">No-Show Rate</span><span class="hcv">8.3%</span><span class="hcc pos">↓ 2.1%</span></div>
+    <div class="hc-metric"><span class="hcl">Claim Denial Rate</span><span class="hcv">4.7%</span><span class="hcc pos">↓ 1.4%</span></div>
+    <div class="hc-metric"><span class="hcl">Avg. Session Rate</span><span class="hcv">$162</span><span class="hcc pos">↑ $8</span></div>
+    <div class="hc-metric"><span class="hcl">Payer Mix (Ins.)</span><span class="hcv">68%</span><span class="hcc neg">↑ 3%</span></div>
+    <div class="hc-note">↑ Built from a SimplePractice CSV export. This is what your data could look like.</div>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<div class="stats-bar fade-in">
-  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Core Service Pillars</div></div>
-  <div class="stat-item"><div class="stat-num">18+</div><div class="stat-label">Services Offered</div></div>
-  <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Years Industry Experience</div></div>
-  <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Team Fully Dedicated to You</div></div>
-</div>
+<!-- FOUNDING OFFER -->
+<section id="offer">
+  <div class="offer-inner">
+    <div class="reveal">
+      <div class="offer-badge">Limited Founding Client Rate</div>
+      <h2>Your First <span class="gold">Dashboard.</span><br>Zero Guesswork.</h2>
+      <p class="offer-body">
+        Export your data from SimplePractice, Jane App, or any EHR as a CSV — and we'll turn it into a
+        clean Power BI dashboard with plain-English insights. No IT department required.
+        No six-month contracts. Just clarity, fast.
+      </p>
+      <div class="offer-includes">
+        <div class="oi"><span class="oi-check">✓</span>Custom Power BI dashboard (revenue, sessions, no-shows, payer mix)</div>
+        <div class="oi"><span class="oi-check">✓</span>Plain-English insights report — what the numbers actually mean</div>
+        <div class="oi"><span class="oi-check">✓</span>Recorded Loom walkthrough of your own data</div>
+        <div class="oi"><span class="oi-check">✓</span>30-min live Q&amp;A call to review findings together</div>
+        <div class="oi"><span class="oi-check">✓</span>All you do: export one CSV. We handle the rest.</div>
+      </div>
+      <p style="margin-top:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);font-style:normal;">
+        → Perfect for solo therapists, private practice clinicians, and small group practices.
+      </p>
+    </div>
+
+    <div class="offer-price-box reveal">
+      <div class="price-was">Regular rate: $400+</div>
+      <div class="price-now">$127</div>
+      <div class="price-desc">One-time · No subscription · No surprise fees</div>
+      <div class="price-steps">
+        <div class="ps"><span class="ps-num">1</span>Book a free 15-min intro call</div>
+        <div class="ps"><span class="ps-num">2</span>Export your CSV from your EHR</div>
+        <div class="ps"><span class="ps-num">3</span>Receive your dashboard in 5–7 days</div>
+        <div class="ps"><span class="ps-num">4</span>Review together on a live call</div>
+      </div>
+      <a href="#contact" class="btn-gold" style="display:block;text-align:center;">Claim Your Spot →</a>
+      <div class="price-fine">
+        Limited spots available at this rate. Once we reach capacity, pricing returns to standard rates.
+        This offer is designed to help us build real-world case studies while delivering genuine value to early clients.
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section id="services">
   <div class="section-inner">
-    <div class="section-label">What We Do</div>
-    <h2>Our <span>Services</span></h2>
-    <p class="section-intro">Three focused practice areas, one team. Whether you need enterprise BI, a professional digital presence, or smarter day-to-day operations — REK has you covered.</p>
+    <div class="section-tag">Full Service Menu</div>
+    <h2>Everything <span class="blue">REK</span> Offers</h2>
+    <p class="section-intro">The starter dashboard is just the beginning. As your needs grow, REK grows with you — across analytics, digital, and automation.</p>
 
-    <div class="pillar-tabs">
-      <button class="ptab active" onclick="switchPillar(0)"><span class="ptab-bar"></span>📊 Analytics &amp; BI</button>
-      <button class="ptab" onclick="switchPillar(1)"><span class="ptab-bar"></span>💻 Digital &amp; Tech</button>
-      <button class="ptab" onclick="switchPillar(2)"><span class="ptab-bar"></span>⚙️ Data &amp; Automation</button>
+    <div class="ptabs">
+      <button class="ptab active" onclick="sw(0)"><span class="tbar"></span>📊 Analytics &amp; BI</button>
+      <button class="ptab" onclick="sw(1)"><span class="tbar"></span>💻 Digital &amp; Tech</button>
+      <button class="ptab" onclick="sw(2)"><span class="tbar"></span>⚙️ Data &amp; Automation</button>
     </div>
 
-    <!-- PILLAR 1 -->
-    <div class="pillar-panel active" id="panel0">
-      <div class="pillar-desc">
-        <p>With deep roots in <strong style="color:var(--text)">healthcare and financial analytics</strong>, REK brings enterprise-grade BI strategy and reporting to organizations that need real answers from complex data. We speak the language of clinical ops, revenue cycle, P&amp;L, and portfolio performance.</p>
-        <span class="pillar-badge badge-blue">Core Expertise</span>
+    <!-- PANEL 1 -->
+    <div class="ppanel p1 active" id="p0">
+      <div class="pdesc">
+        <p>Built on deep expertise in <strong style="color:var(--text);font-style:normal">healthcare and financial analytics</strong>. We understand your metrics, your compliance requirements, and the business questions that actually matter in your field.</p>
+        <span class="pbadge bb">Core Expertise</span>
       </div>
-      <div class="services-grid">
-        <div class="service-card p1-accent"><div class="svc-num">01</div><div class="svc-title">Healthcare Analytics</div><p class="svc-desc">Clinical performance dashboards, revenue cycle analytics, patient flow modeling, and HIPAA-compliant reporting built for hospitals, clinics, and health systems.</p><div class="svc-tags"><span class="tag">Revenue Cycle</span><span class="tag">Clinical KPIs</span><span class="tag">HIPAA</span></div></div>
-        <div class="service-card p1-accent"><div class="svc-num">02</div><div class="svc-title">Financial Analytics</div><p class="svc-desc">P&amp;L visibility, cash flow forecasting, portfolio performance tracking, and board-ready financial dashboards for advisors, firms, and finance teams.</p><div class="svc-tags"><span class="tag">Forecasting</span><span class="tag">P&amp;L</span><span class="tag">Portfolio BI</span></div></div>
-        <div class="service-card p1-accent"><div class="svc-num">03</div><div class="svc-title">BI Strategy &amp; Roadmapping</div><p class="svc-desc">We audit your data landscape, design a metric framework, and build a phased intelligence roadmap tied directly to your business goals.</p><div class="svc-tags"><span class="tag">Data Audit</span><span class="tag">KPI Design</span><span class="tag">Roadmap</span></div></div>
-        <div class="service-card p1-accent"><div class="svc-num">04</div><div class="svc-title">Dashboard &amp; Reporting</div><p class="svc-desc">Real-time, self-serve dashboards in Power BI, Looker, or Tableau — built for executives, operators, and front-line managers alike.</p><div class="svc-tags"><span class="tag">Power BI</span><span class="tag">Looker</span><span class="tag">Tableau</span></div></div>
-        <div class="service-card p1-accent"><div class="svc-num">05</div><div class="svc-title">Data Warehouse &amp; ETL</div><p class="svc-desc">Scalable data architecture and automated pipelines that consolidate your sources, clean your data, and keep it flowing reliably.</p><div class="svc-tags"><span class="tag">Snowflake</span><span class="tag">dbt</span><span class="tag">BigQuery</span></div></div>
-        <div class="service-card p1-accent"><div class="svc-num">06</div><div class="svc-title">Fractional BI Leadership</div><p class="svc-desc">Embed a senior data strategist into your team part-time. Enterprise-level thinking at a fraction of the cost of a full-time hire.</p><div class="svc-tags"><span class="tag">Fractional CDO</span><span class="tag">Advisory</span><span class="tag">Training</span></div></div>
-      </div>
-    </div>
-
-    <!-- PILLAR 2 -->
-    <div class="pillar-panel" id="panel1">
-      <div class="pillar-desc">
-        <p>Powered by cutting-edge AI tools, REK builds <strong style="color:var(--text)">fast, professional digital products</strong> — websites, apps, and brand identities — at a fraction of traditional agency cost and timeline. Clean, modern work delivered quickly.</p>
-        <span class="pillar-badge badge-gold">AI-Powered</span>
-      </div>
-      <div class="services-grid">
-        <div class="service-card p2-accent"><div class="svc-num svc-num-gold">01</div><div class="svc-title">Website Design &amp; Development</div><p class="svc-desc">Custom, mobile-first websites designed with intention and built to perform — from simple landing pages to full multi-page business sites.</p><div class="svc-tags"><span class="tag">HTML/CSS</span><span class="tag">WordPress</span><span class="tag">Webflow</span></div></div>
-        <div class="service-card p2-accent"><div class="svc-num svc-num-gold">02</div><div class="svc-title">AI-Powered Web Builds</div><p class="svc-desc">Leverage the latest AI tools to deliver polished, functional websites at speed and scale — the next generation of web development.</p><div class="svc-tags"><span class="tag">AI Tools</span><span class="tag">Rapid Build</span><span class="tag">Cost-Effective</span></div></div>
-        <div class="service-card p2-accent"><div class="svc-num svc-num-gold">03</div><div class="svc-title">E-Commerce Builds</div><p class="svc-desc">Launch a fully functional online store with product pages, payments, and inventory management — ready to sell from day one.</p><div class="svc-tags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">Payments</span></div></div>
-        <div class="service-card p2-accent"><div class="svc-num svc-num-gold">04</div><div class="svc-title">App / Software Development</div><p class="svc-desc">AI-assisted custom app development — from internal tools to client-facing software — scoped clearly and built iteratively.</p><div class="svc-tags"><span class="tag">Web Apps</span><span class="tag">Internal Tools</span><span class="tag">Prototyping</span></div></div>
-        <div class="service-card p2-accent"><div class="svc-num svc-num-gold">05</div><div class="svc-title">Brand Identity &amp; Logo Design</div><p class="svc-desc">Visual identity systems that feel distinct and professional — logo, color palette, typography, and brand guidelines your team will actually use.</p><div class="svc-tags"><span class="tag">Logo</span><span class="tag">Brand Guide</span><span class="tag">Assets</span></div></div>
-        <div class="service-card p2-accent"><div class="svc-num svc-num-gold">06</div><div class="svc-title">SEO &amp; Performance Optimization</div><p class="svc-desc">Technical SEO audits, on-page optimization, speed improvements, and content strategy to help you rank higher and convert more visitors.</p><div class="svc-tags"><span class="tag">Technical SEO</span><span class="tag">Core Web Vitals</span><span class="tag">Content</span></div></div>
+      <div class="sgrid">
+        <div class="scard"><div class="snum">01</div><div class="stitle">Healthcare Analytics</div><p class="sdesc">Revenue cycle dashboards, clinical performance tracking, patient flow modeling, and HIPAA-compliant reporting for practices of all sizes.</p><div class="stags"><span class="tag">Revenue Cycle</span><span class="tag">Clinical KPIs</span><span class="tag">HIPAA</span></div></div>
+        <div class="scard"><div class="snum">02</div><div class="stitle">Financial Analytics</div><p class="sdesc">P&amp;L visibility, cash flow forecasting, portfolio performance tracking, and board-ready dashboards for advisors and finance teams.</p><div class="stags"><span class="tag">Forecasting</span><span class="tag">P&amp;L</span><span class="tag">Portfolio BI</span></div></div>
+        <div class="scard"><div class="snum">03</div><div class="stitle">BI Strategy &amp; Roadmapping</div><p class="sdesc">A full audit of your data landscape, a custom KPI framework, and a phased roadmap tied directly to your business goals.</p><div class="stags"><span class="tag">Data Audit</span><span class="tag">KPI Design</span><span class="tag">Roadmap</span></div></div>
+        <div class="scard"><div class="snum">04</div><div class="stitle">Dashboard &amp; Reporting</div><p class="sdesc">Self-serve dashboards in Power BI, Looker Studio, or Tableau — built for executives, operators, and front-line staff alike.</p><div class="stags"><span class="tag">Power BI</span><span class="tag">Looker</span><span class="tag">Tableau</span></div></div>
+        <div class="scard"><div class="snum">05</div><div class="stitle">Data Warehouse &amp; ETL</div><p class="sdesc">Scalable architecture and automated pipelines that consolidate your sources, clean your data, and keep it flowing reliably.</p><div class="stags"><span class="tag">Snowflake</span><span class="tag">dbt</span><span class="tag">BigQuery</span></div></div>
+        <div class="scard"><div class="snum">06</div><div class="stitle">Fractional BI Leadership</div><p class="sdesc">Embed a senior data strategist into your team part-time — enterprise-level thinking without the full-time overhead.</p><div class="stags"><span class="tag">Fractional CDO</span><span class="tag">Advisory</span><span class="tag">Training</span></div></div>
       </div>
     </div>
 
-    <!-- PILLAR 3 -->
-    <div class="pillar-panel" id="panel2">
-      <div class="pillar-desc">
-        <p>Most businesses are sitting on <strong style="color:var(--text)">data they don't fully understand</strong> — and spending hours on tasks that could run automatically. REK helps you make sense of your numbers and builds automations that give your team valuable time back.</p>
-        <span class="pillar-badge badge-green">Small Business</span>
+    <!-- PANEL 2 -->
+    <div class="ppanel p2" id="p1">
+      <div class="pdesc">
+        <p>Using the <strong style="color:var(--text);font-style:normal">latest AI tools</strong>, REK builds fast, professional digital products at a fraction of traditional agency cost and timeline. Clean, modern, delivered quickly.</p>
+        <span class="pbadge bg">AI-Powered</span>
       </div>
-      <div class="services-grid">
-        <div class="service-card p3-accent"><div class="svc-num svc-num-green">01</div><div class="svc-title">Business Data Clarity</div><p class="svc-desc">We translate your spreadsheets, sales reports, and dashboards into plain-language insights — so you know exactly what's working and what isn't.</p><div class="svc-tags"><span class="tag">Data Review</span><span class="tag">Plain English</span><span class="tag">Action Items</span></div></div>
-        <div class="service-card p3-accent"><div class="svc-num svc-num-green">02</div><div class="svc-title">Simple Dashboards &amp; Reports</div><p class="svc-desc">Easy-to-read dashboards built for non-technical business owners — track your most important numbers without needing a data team.</p><div class="svc-tags"><span class="tag">Google Looker</span><span class="tag">Excel/Sheets</span><span class="tag">Custom</span></div></div>
-        <div class="service-card p3-accent"><div class="svc-num svc-num-green">03</div><div class="svc-title">Workflow Automation</div><p class="svc-desc">Stop doing the same tasks manually. We automate your recurring workflows — invoicing, follow-ups, data entry, reporting — using powerful no-code tools.</p><div class="svc-tags"><span class="tag">Zapier</span><span class="tag">Make</span><span class="tag">No-Code</span></div></div>
-        <div class="service-card p3-accent"><div class="svc-num svc-num-green">04</div><div class="svc-title">AI Tool Setup &amp; Training</div><p class="svc-desc">We identify the right AI tools for your business, set them up, and train your team so you actually get the time savings AI promises.</p><div class="svc-tags"><span class="tag">AI Tools</span><span class="tag">Setup</span><span class="tag">Training</span></div></div>
-        <div class="service-card p3-accent"><div class="svc-num svc-num-green">05</div><div class="svc-title">Social Media Management</div><p class="svc-desc">Consistent, on-brand content planned, written, and scheduled — so your business stays visible without consuming your entire week.</p><div class="svc-tags"><span class="tag">Content Calendar</span><span class="tag">AI-Assisted</span><span class="tag">Scheduling</span></div></div>
-        <div class="service-card p3-accent"><div class="svc-num svc-num-green">06</div><div class="svc-title">Tech Stack Consulting</div><p class="svc-desc">Not sure which tools your business actually needs? We audit what you're using and recommend a lean, cost-effective stack that truly integrates.</p><div class="svc-tags"><span class="tag">Software Audit</span><span class="tag">Integration</span><span class="tag">Cost Savings</span></div></div>
+      <div class="sgrid">
+        <div class="scard"><div class="snum">01</div><div class="stitle">Website Design &amp; Development</div><p class="sdesc">Custom, mobile-first websites designed to convert and built to perform — from landing pages to full business sites.</p><div class="stags"><span class="tag">HTML/CSS</span><span class="tag">WordPress</span><span class="tag">Webflow</span></div></div>
+        <div class="scard"><div class="snum">02</div><div class="stitle">AI-Powered Web Builds</div><p class="sdesc">Polished, functional websites delivered at speed using the latest AI development tools — fast turnaround, professional quality.</p><div class="stags"><span class="tag">AI Tools</span><span class="tag">Rapid Build</span><span class="tag">Cost-Effective</span></div></div>
+        <div class="scard"><div class="snum">03</div><div class="stitle">E-Commerce Builds</div><p class="sdesc">A fully functional online store with product pages, payments, and inventory — ready to sell from day one.</p><div class="stags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">Payments</span></div></div>
+        <div class="scard"><div class="snum">04</div><div class="stitle">App / Software Development</div><p class="sdesc">AI-assisted custom app development — internal tools to client-facing software — scoped clearly and built iteratively.</p><div class="stags"><span class="tag">Web Apps</span><span class="tag">Internal Tools</span><span class="tag">Prototyping</span></div></div>
+        <div class="scard"><div class="snum">05</div><div class="stitle">Brand Identity &amp; Logo Design</div><p class="sdesc">Visual identity systems that feel professional and distinct — logo, color palette, typography, and brand guidelines.</p><div class="stags"><span class="tag">Logo</span><span class="tag">Brand Guide</span><span class="tag">Assets</span></div></div>
+        <div class="scard"><div class="snum">06</div><div class="stitle">SEO &amp; Performance Optimization</div><p class="sdesc">Technical SEO audits, on-page optimization, speed improvements, and content strategy to help you rank and convert.</p><div class="stags"><span class="tag">Technical SEO</span><span class="tag">Core Web Vitals</span><span class="tag">Content</span></div></div>
       </div>
     </div>
 
+    <!-- PANEL 3 -->
+    <div class="ppanel p3" id="p2">
+      <div class="pdesc">
+        <p>Most businesses are sitting on <strong style="color:var(--text);font-style:normal">data they don't fully understand</strong> and spending hours on tasks that could run automatically. REK makes your numbers clear and gives your team their time back.</p>
+        <span class="pbadge bgr">Small Business</span>
+      </div>
+      <div class="sgrid">
+        <div class="scard"><div class="snum">01</div><div class="stitle">Business Data Clarity</div><p class="sdesc">We translate your spreadsheets, sales reports, and dashboards into plain-language insights — what's working, what isn't, and what to do next.</p><div class="stags"><span class="tag">Data Review</span><span class="tag">Plain English</span><span class="tag">Action Items</span></div></div>
+        <div class="scard"><div class="snum">02</div><div class="stitle">Simple Dashboards &amp; Reports</div><p class="sdesc">Easy-to-read dashboards for non-technical business owners — track your most important numbers without needing a data team.</p><div class="stags"><span class="tag">Looker Studio</span><span class="tag">Excel/Sheets</span><span class="tag">Custom</span></div></div>
+        <div class="scard"><div class="snum">03</div><div class="stitle">Workflow Automation</div><p class="sdesc">Automate your recurring workflows — invoicing, follow-ups, data entry, reporting — using powerful no-code tools.</p><div class="stags"><span class="tag">Zapier</span><span class="tag">Make</span><span class="tag">No-Code</span></div></div>
+        <div class="scard"><div class="snum">04</div><div class="stitle">AI Tool Setup &amp; Training</div><p class="sdesc">We identify the right AI tools for your business, set them up, and train your team so you actually capture the time savings.</p><div class="stags"><span class="tag">AI Tools</span><span class="tag">Setup</span><span class="tag">Training</span></div></div>
+        <div class="scard"><div class="snum">05</div><div class="stitle">Social Media Management</div><p class="sdesc">Consistent, on-brand content planned, written, and scheduled so your business stays visible without consuming your week.</p><div class="stags"><span class="tag">Content Calendar</span><span class="tag">AI-Assisted</span><span class="tag">Scheduling</span></div></div>
+        <div class="scard"><div class="snum">06</div><div class="stitle">Tech Stack Consulting</div><p class="sdesc">We audit the tools you're using and recommend a lean, cost-effective stack that actually integrates and saves you money.</p><div class="stags"><span class="tag">Software Audit</span><span class="tag">Integration</span><span class="tag">Cost Savings</span></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- WHO WE SERVE -->
 <section id="who">
   <div class="section-inner">
-    <div class="section-label">Our Clients</div>
-    <h2>Who We <span>Serve</span></h2>
-    <p class="section-intro">Our background and service mix puts us in a unique position to serve three distinct client types — all with the same commitment to clarity and results.</p>
-    <div class="who-grid fade-in">
-      <div class="who-card">
+    <div class="section-tag">Our Clients</div>
+    <h2>Who We <span class="blue">Serve</span></h2>
+    <p class="section-intro">Our primary focus is independent clinicians and small medical practices — where our healthcare background gives us a real edge. We also serve financial professionals and small businesses ready to get more from their data.</p>
+    <div class="who-grid reveal">
+
+      <div class="who-card primary">
+        <div class="who-flag">Primary Focus</div>
         <div class="who-icon">🏥</div>
-        <div class="who-title">Healthcare Organizations</div>
-        <p class="who-desc">Clinics, hospitals, and health systems that need data-driven insight into clinical performance, operations, and revenue — from people who understand the industry.</p>
+        <div class="who-title">Independent Clinicians &amp; Small Practices</div>
+        <p class="who-desc">Solo practitioners and small group practices who want to understand their numbers, reduce admin burden, and grow sustainably — without enterprise tools or enterprise budgets.</p>
         <div class="who-list">
-          <span class="who-item">Physician groups &amp; private practices</span>
-          <span class="who-item">Hospitals &amp; health systems</span>
-          <span class="who-item">Healthcare staffing firms</span>
-          <span class="who-item">Health tech companies</span>
+          <span class="wli">Therapists &amp; counselors (SimplePractice, Jane App)</span>
+          <span class="wli">Private practice physicians</span>
+          <span class="wli">Physical &amp; occupational therapy practices</span>
+          <span class="wli">Behavioral health &amp; psychiatry groups</span>
         </div>
       </div>
+
       <div class="who-card">
         <div class="who-icon">📈</div>
         <div class="who-title">Financial Services</div>
         <p class="who-desc">Advisors, firms, and finance teams that need sharper visibility into portfolio performance, client metrics, and operational efficiency.</p>
         <div class="who-list">
-          <span class="who-item">RIAs &amp; financial advisors</span>
-          <span class="who-item">Private equity &amp; investment firms</span>
-          <span class="who-item">Insurance companies</span>
-          <span class="who-item">Accounting &amp; CPA firms</span>
+          <span class="wli">RIAs &amp; financial advisors</span>
+          <span class="wli">Private equity &amp; investment firms</span>
+          <span class="wli">Insurance companies</span>
+          <span class="wli">Accounting &amp; CPA firms</span>
         </div>
       </div>
+
       <div class="who-card">
         <div class="who-icon">🏪</div>
         <div class="who-title">Small Businesses</div>
         <p class="who-desc">Growing businesses ready to understand their numbers, automate repetitive work, and compete with a sharp digital presence — without enterprise-sized budgets.</p>
         <div class="who-list">
-          <span class="who-item">Retail &amp; service businesses</span>
-          <span class="who-item">Restaurants &amp; hospitality</span>
-          <span class="who-item">Professional services</span>
-          <span class="who-item">E-commerce brands</span>
+          <span class="wli">Retail &amp; service businesses</span>
+          <span class="wli">Restaurants &amp; hospitality</span>
+          <span class="wli">Professional service firms</span>
+          <span class="wli">E-commerce brands</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -408,13 +589,13 @@
 <!-- PROCESS -->
 <section id="process">
   <div class="section-inner">
-    <div class="section-label">How It Works</div>
-    <h2>Our <span>Process</span></h2>
-    <div class="process-steps fade-in">
-      <div class="step"><div class="step-num">01</div><div class="step-title">Discovery</div><p class="step-desc">A free 30-minute call to understand your goals, challenges, and current setup — no jargon, no pressure.</p></div>
-      <div class="step"><div class="step-num">02</div><div class="step-title">Blueprint</div><p class="step-desc">A clear plan — what we'll build, what it costs, and what you'll get. Scoped tight so there are no surprises.</p></div>
-      <div class="step"><div class="step-num">03</div><div class="step-title">Build</div><p class="step-desc">Fast execution with weekly check-ins and visible progress. You see the work as it develops, not just at the end.</p></div>
-      <div class="step"><div class="step-num">04</div><div class="step-title">Grow</div><p class="step-desc">Ongoing support, training, and iteration as your business evolves. REK stays in your corner long-term.</p></div>
+    <div class="section-tag">How It Works</div>
+    <h2>Our <span class="blue">Process</span></h2>
+    <div class="psteps reveal">
+      <div class="pstep"><div class="pnum">01</div><div class="ptitle">Discovery</div><p class="pdescr">A free 30-min call to understand your goals, your data, and your biggest pain points — no jargon, no pressure.</p></div>
+      <div class="pstep"><div class="pnum">02</div><div class="ptitle">Blueprint</div><p class="pdescr">A clear scope — what we'll build, what it costs, and exactly what you'll receive. No surprises.</p></div>
+      <div class="pstep"><div class="pnum">03</div><div class="ptitle">Build</div><p class="pdescr">Fast, focused execution with regular check-ins. You see progress throughout, not just at the end.</p></div>
+      <div class="pstep"><div class="pnum">04</div><div class="ptitle">Grow</div><p class="pdescr">Ongoing support and iteration as your practice or business evolves. REK stays in your corner.</p></div>
     </div>
   </div>
 </section>
@@ -422,24 +603,25 @@
 <!-- WHY REK -->
 <section id="why">
   <div class="section-inner">
-    <div class="section-label">The REK Difference</div>
-    <h2>Why Choose <span>REK</span></h2>
-    <div class="why-grid fade-in">
-      <div class="why-visual">
-        <div class="vc-label">// Avg. client performance improvement</div>
-        <div class="bar-chart">
-          <div class="bar-row"><span class="bar-name">Reporting Speed</span><div class="bar-track"><div class="bar-fill" style="width:87%;animation-delay:0s"></div></div><span class="bar-val">87%</span></div>
-          <div class="bar-row"><span class="bar-name">Decision Velocity</span><div class="bar-track"><div class="bar-fill" style="width:72%;animation-delay:.15s"></div></div><span class="bar-val">72%</span></div>
-          <div class="bar-row"><span class="bar-name">Revenue Visibility</span><div class="bar-track"><div class="bar-fill" style="width:94%;animation-delay:.3s"></div></div><span class="bar-val">94%</span></div>
-          <div class="bar-row"><span class="bar-name">Hours Saved/Wk</span><div class="bar-track"><div class="bar-fill" style="width:80%;animation-delay:.45s"></div></div><span class="bar-val">80%</span></div>
-          <div class="bar-row"><span class="bar-name">Data Trust Score</span><div class="bar-track"><div class="bar-fill" style="width:97%;animation-delay:.6s"></div></div><span class="bar-val">97%</span></div>
+    <div class="section-tag">The REK Difference</div>
+    <h2>Why Choose <span class="blue">REK</span></h2>
+    <div class="why-grid reveal">
+      <div class="why-panel">
+        <div class="wp-label">// Avg. improvement reported by clients in similar practices</div>
+        <div class="barchart">
+          <div class="brow"><span class="bname">Reporting Speed</span><div class="btrack"><div class="bfill" style="width:87%;animation-delay:0s"></div></div><span class="bval">87%</span></div>
+          <div class="brow"><span class="bname">Decision Velocity</span><div class="btrack"><div class="bfill" style="width:74%;animation-delay:.15s"></div></div><span class="bval">74%</span></div>
+          <div class="brow"><span class="bname">Revenue Visibility</span><div class="btrack"><div class="bfill" style="width:93%;animation-delay:.3s"></div></div><span class="bval">93%</span></div>
+          <div class="brow"><span class="bname">Hours Saved/Wk</span><div class="btrack"><div class="bfill" style="width:80%;animation-delay:.45s"></div></div><span class="bval">80%</span></div>
+          <div class="brow"><span class="bname">Data Confidence</span><div class="btrack"><div class="bfill" style="width:96%;animation-delay:.6s"></div></div><span class="bval">96%</span></div>
         </div>
+        <div style="margin-top:1.2rem;font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--muted);font-style:italic;line-height:1.6;">* Based on industry benchmarks for BI implementations in healthcare and professional services. Individual results vary.</div>
       </div>
       <div class="why-points">
-        <div class="why-point"><div class="wpi">🎯</div><div><div class="wp-title">Domain Expertise You Can't Fake</div><p class="wp-desc">Our background in healthcare and financial analytics means we understand your industry before we write a single formula or line of code.</p></div></div>
-        <div class="why-point"><div class="wpi">⚡</div><div><div class="wp-title">AI-Accelerated Delivery</div><p class="wp-desc">We use the latest AI tools to build faster and smarter — cutting timelines and costs without cutting corners on quality.</p></div></div>
-        <div class="why-point"><div class="wpi">🤝</div><div><div class="wp-title">Built for Every Business Size</div><p class="wp-desc">From health systems to the local restaurant on the corner — we scope and price our work to fit your reality, not a one-size-fits-all package.</p></div></div>
-        <div class="why-point"><div class="wpi">🔒</div><div><div class="wp-title">Secure &amp; Compliant</div><p class="wp-desc">HIPAA-aware data practices, secure client portals, and enterprise-grade infrastructure — built in from the start, not bolted on later.</p></div></div>
+        <div class="wpoint"><div class="wicon">🎯</div><div><div class="wtitle">We Speak Your Language</div><p class="wdesc">Our background in healthcare and financial analytics means we understand CPT codes, payer mix, denial rates, and P&amp;L — before we open a single spreadsheet.</p></div></div>
+        <div class="wpoint"><div class="wicon">⚡</div><div><div class="wtitle">AI-Accelerated Delivery</div><p class="wdesc">We use the latest AI tools to build faster without cutting corners — so you get enterprise-quality work at independent-practice pricing.</p></div></div>
+        <div class="wpoint"><div class="wicon">💬</div><div><div class="wtitle">Plain English, Always</div><p class="wdesc">No dashboards that require a data science degree to interpret. Every insight comes with a clear explanation of what it means and what to do about it.</p></div></div>
+        <div class="wpoint"><div class="wicon">🤝</div><div><div class="wtitle">A Real Relationship</div><p class="wdesc">We're not a platform or a ticket queue. You work with a person who knows your practice and stays engaged long after delivery.</p></div></div>
       </div>
     </div>
   </div>
@@ -448,44 +630,44 @@
 <!-- CLIENT PORTAL -->
 <section id="portal">
   <div class="portal-inner">
-    <div class="fade-in">
-      <div class="section-label">Exclusive Access</div>
-      <h2>Your <span>Client</span> Portal</h2>
-      <p style="margin-top:1rem;font-size:1rem;color:var(--muted);line-height:1.75;">Every REK client gets access to a secure real-time portal — your single source of truth for metrics, reports, deliverables, and project updates.</p>
-      <div class="portal-features">
+    <div class="reveal">
+      <div class="section-tag">Coming Soon</div>
+      <h2>Your <span class="blue">Client</span> Portal</h2>
+      <p style="margin-top:.9rem;font-size:1rem;color:var(--muted);line-height:1.8;font-style:italic;">We're building a secure client hub where every REK client will have real-time access to their dashboards, reports, project updates, and a direct line to their analyst.</p>
+      <div class="pfeats">
         <div class="pfeat">Live dashboards — 24/7, any device</div>
-        <div class="pfeat">Downloadable reports &amp; exec summaries</div>
+        <div class="pfeat">Downloadable reports &amp; summaries</div>
         <div class="pfeat">Project milestones &amp; sprint progress</div>
-        <div class="pfeat">Direct channel to your REK analyst</div>
+        <div class="pfeat">Direct messaging with your REK analyst</div>
         <div class="pfeat">Secure, HIPAA-aware data handling</div>
       </div>
-      <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:2.2rem;opacity:0.6;cursor:default;pointer-events:none;">Coming Soon</a>
+      <span class="soon-badge">🔒 Coming Soon — Notify Me</span>
     </div>
-    <div class="portal-mockup fade-in">
-      <div class="pm-bar">
-        <div class="pm-dot" style="background:#f26d6d"></div>
-        <div class="pm-dot" style="background:#f5a623"></div>
-        <div class="pm-dot" style="background:#3ecf8e"></div>
-        <span class="pm-url">portal.rekanalytics.com</span>
+    <div class="pmock reveal">
+      <div class="pmbar">
+        <div class="pmdot" style="background:#e05555"></div>
+        <div class="pmdot" style="background:#f0a500"></div>
+        <div class="pmdot" style="background:#2ecc8f"></div>
+        <span class="pmurl">portal.rekanalytics.com</span>
       </div>
-      <div class="pm-body">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);margin-bottom:1rem;">// Q4 2024 · Business Overview</div>
-        <div class="pm-row">
-          <div class="pm-widget"><div class="pwl">Revenue</div><div class="pwv">$1.84M</div><div class="pwc">↑ 22.4% QoQ</div></div>
-          <div class="pm-widget"><div class="pwl">Margin</div><div class="pwv">38.1%</div><div class="pwc">↑ 4.2 pts</div></div>
-          <div class="pm-widget"><div class="pwl">Automated</div><div class="pwv">340h</div><div class="pwc">this month</div></div>
+      <div class="pmbody">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);margin-bottom:1rem;">// Practice Overview · Nov 2024</div>
+        <div class="pmrow">
+          <div class="pmw"><div class="pwl">Revenue</div><div class="pwv">$28.4K</div><div class="pwc">↑ 12% MoM</div></div>
+          <div class="pmw"><div class="pwl">Sessions</div><div class="pwv">174</div><div class="pwc">↑ 9 this mo.</div></div>
+          <div class="pmw"><div class="pwl">No-Show</div><div class="pwv">8.3%</div><div class="pwc">↓ 2.1%</div></div>
         </div>
-        <div class="pm-graph">
-          <svg viewBox="0 0 280 50" preserveAspectRatio="none">
-            <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00aaff" stop-opacity=".3"/><stop offset="100%" stop-color="#00aaff" stop-opacity="0"/></linearGradient></defs>
-            <path d="M0 45 L35 40 L70 34 L105 28 L140 22 L175 16 L210 11 L245 7 L280 3" fill="none" stroke="#00aaff" stroke-width="1.5"/>
-            <path d="M0 45 L35 40 L70 34 L105 28 L140 22 L175 16 L210 11 L245 7 L280 3 L280 50 L0 50Z" fill="url(#g1)"/>
+        <div class="pmgraph">
+          <svg viewBox="0 0 280 45" preserveAspectRatio="none">
+            <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00aaff" stop-opacity=".28"/><stop offset="100%" stop-color="#00aaff" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0 40 L40 35 L80 30 L110 26 L140 20 L170 15 L200 10 L240 6 L280 2" fill="none" stroke="#00aaff" stroke-width="1.5"/>
+            <path d="M0 40 L40 35 L80 30 L110 26 L140 20 L170 15 L200 10 L240 6 L280 2 L280 45 L0 45Z" fill="url(#g)"/>
           </svg>
         </div>
-        <div class="pm-list">
-          <div class="pm-file hi"><span>Q4 Executive Summary</span><span class="pm-ft">PDF</span></div>
-          <div class="pm-file"><span style="color:var(--muted)">Automation Log — Nov</span><span class="pm-ft">XLS</span></div>
-          <div class="pm-file"><span style="color:var(--muted)">Revenue Forecast Model</span><span class="pm-ft">XLS</span></div>
+        <div class="pmfiles">
+          <div class="pmf hi"><span>Nov Practice Summary</span><span class="pmft">PDF</span></div>
+          <div class="pmf"><span style="color:var(--muted)">Payer Mix Analysis</span><span class="pmft">XLSX</span></div>
+          <div class="pmf"><span style="color:var(--muted)">Denial Rate Breakdown</span><span class="pmft">PDF</span></div>
         </div>
       </div>
     </div>
@@ -495,28 +677,35 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
-    <div class="section-label">Let's Talk</div>
-    <h2>Start Your <span>Journey</span></h2>
-    <div class="contact-grid fade-in">
+    <div class="section-tag">Let's Talk</div>
+    <h2>Start With a <span class="blue">Free Call</span></h2>
+    <div class="contact-grid reveal">
       <div>
-        <p style="font-size:1rem;color:var(--muted);line-height:1.75;">Whether you're a hospital trying to fix your revenue cycle reporting, a financial advisor who wants cleaner dashboards, or a small business owner drowning in spreadsheets — REK is here to help. Start with a free 30-minute discovery call.</p>
-        <div class="cinfo-stack">
-          <div class="cinfo"><div class="cinfo-icon">@</div><div><div class="cil">Email</div><div class="civ"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="90f8f5fcfcffd0e2f5fbf1fef1fce9e4f9f3e3bef3fffd">[email&#160;protected]</a></div></div></div>
-          <div class="cinfo"><div class="cinfo-icon">☎</div><div><div class="cil">Phone</div><div class="civ">(555) 010-1100</div></div></div>
-          <div class="cinfo"><div class="cinfo-icon">⊙</div><div><div class="cil">Location</div><div class="civ">Remote-first · Available Nationwide</div></div></div>
+        <p style="font-size:1rem;color:var(--muted);line-height:1.8;font-style:italic;">
+          Whether you're a therapist curious about your SimplePractice data, a clinic ready for real BI infrastructure, or a small business drowning in spreadsheets — start with a free 30-minute call.
+          No pitch. Just an honest conversation about what your data could be telling you.
+        </p>
+        <div class="cstack">
+          <div class="citem"><div class="cicon">@</div><div><div class="clbl">Email</div><div class="cval"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff979a939390bf8d9a949e919e93868b969c8cd19c9092">[email&#160;protected]</a></div></div></div>
+          <div class="citem"><div class="cicon">☎</div><div><div class="clbl">Phone</div><div class="cval">(402) 819-9644</div></div></div>
+          <div class="citem"><div class="cicon">⊙</div><div><div class="clbl">Location</div><div class="cval">Remote-first · Available Nationwide</div></div></div>
         </div>
       </div>
-      <form class="rek-form" onsubmit="handleSubmit(event)">
-        <div class="form-row">
+
+      <form class="form" onsubmit="handleSubmit(event)">
+        <div class="frow">
           <div class="field"><label for="fn">First Name</label><input type="text" id="fn" placeholder="Jane" required></div>
           <div class="field"><label for="ln">Last Name</label><input type="text" id="ln" placeholder="Smith" required></div>
         </div>
-        <div class="field"><label for="em">Work Email</label><input type="email" id="em" placeholder="jane@company.com" required></div>
-        <div class="field"><label for="co">Company / Organization</label><input type="text" id="co" placeholder="Acme Corp"></div>
+        <div class="field"><label for="em">Email</label><input type="email" id="em" placeholder="jane@mypractice.com" required></div>
+        <div class="field"><label for="co">Practice / Company</label><input type="text" id="co" placeholder="Smith Therapy Practice"></div>
         <div class="field">
-          <label for="svc">I Need Help With…</label>
+          <label for="svc">I'm Interested In…</label>
           <select id="svc">
-            <option value="">Select a service area…</option>
+            <option value="">Select an area…</option>
+            <optgroup label="⭐ Founding Client Offer">
+              <option>Starter Dashboard ($127) — SimplePractice / EHR CSV</option>
+            </optgroup>
             <optgroup label="Analytics &amp; BI">
               <option>Healthcare Analytics</option>
               <option>Financial Analytics</option>
@@ -527,7 +716,6 @@
               <option>Website Design &amp; Development</option>
               <option>AI-Powered Web Build</option>
               <option>E-Commerce Store</option>
-              <option>App / Software Development</option>
               <option>Brand Identity &amp; Logo</option>
               <option>SEO &amp; Performance</option>
             </optgroup>
@@ -535,14 +723,13 @@
               <option>Understanding My Business Data</option>
               <option>Workflow Automation</option>
               <option>AI Tool Setup &amp; Training</option>
-              <option>Social Media Management</option>
               <option>Tech Stack Consulting</option>
             </optgroup>
           </select>
         </div>
-        <div class="field"><label for="msg">Tell Us About Your Goals</label><textarea id="msg" placeholder="We're a small clinic looking to get better visibility into our billing data and reduce manual reporting time…"></textarea></div>
-        <button type="submit" class="submit-btn">Send Message →</button>
-        <div id="form-success">✓ Message received. We'll be in touch within 1 business day.</div>
+        <div class="field"><label for="msg">Tell Me About Your Situation</label><textarea id="msg" placeholder="I'm a solo therapist using SimplePractice and I want to understand my revenue trends and no-show patterns better…"></textarea></div>
+        <button type="submit" class="sbtn">Send Message →</button>
+        <div id="fsuccess">✓ Message received — I'll be in touch within 1 business day.</div>
       </form>
     </div>
   </div>
@@ -550,46 +737,28 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="fl">REK<span>.</span>ANALYTICS</div>
-  <div class="fc">© 2025 REK Analytics. All rights reserved.</div>
-  <div class="fc">Privacy · Terms</div>
+  <div class="flogo">REK<span class="dot">.</span>ANALYTICS</div>
+  <div class="fcopy">© 2025 REK Analytics. All rights reserved.</div>
+  <div class="fcopy">Privacy · Terms</div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function switchPillar(i) {
+  // Tab switching
+  function sw(i) {
     document.querySelectorAll('.ptab').forEach((t,j) => t.classList.toggle('active', i===j));
-    document.querySelectorAll('.pillar-panel').forEach((p,j) => p.classList.toggle('active', i===j));
+    document.querySelectorAll('.ppanel').forEach((p,j) => p.classList.toggle('active', i===j));
   }
 
+  // Scroll reveal — visible by default, animates if JS runs
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => {
-    el.classList.add('animate');
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.classList.add('prep');
     obs.observe(el);
   });
 
-  const statObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(!e.isIntersecting) return;
-      const nums = e.target.querySelectorAll('.stat-num');
-      const data = [[3,''],[18,'+'],[10,'+'],[1,'']];
-      nums.forEach((el,i) => {
-        const [val, suf] = data[i];
-        let c = 0;
-        const t = setInterval(() => {
-          c = Math.min(c + val/60, val);
-          const d = Math.round(c);
-          el.textContent = d + suf;
-          if(c >= val) clearInterval(t);
-        }, 16);
-      });
-      statObs.unobserve(e.target);
-    });
-  }, { threshold: 0.3 });
-  const sb = document.querySelector('.stats-bar');
-  if(sb) statObs.observe(sb);
-
+  // Form
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.submit-btn
+    const btn = e.target.querySelector('
