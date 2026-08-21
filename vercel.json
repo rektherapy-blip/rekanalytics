@@ -1,8 +1,12 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
-    { "source": "/blog", "destination": "/blog/blog.html" },
-    { "source": "/blog/:path*", "destination": "/blog/:path*.html" }
+    {
+      "source": "/blog",
+      "destination": "/blog/blog.html"
+    },
+    {
+      "source": "/blog/(.*)",
+      "destination": "/blog/$1.html"
+    }
   ]
 }
